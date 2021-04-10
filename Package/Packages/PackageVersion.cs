@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using SE.Parsing;
 
@@ -23,6 +24,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public UInt32 Major
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return (UInt32)((value >> 22) & 0x3FF); }
         }
         /// <summary>
@@ -30,6 +32,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public UInt32 Minor
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return (UInt32)((value >> 12) & 0x3FF); }
         }
         /// <summary>
@@ -37,6 +40,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public UInt32 Revision
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return (UInt32)((value >> 2) & 0x3FF); }
         }
 
@@ -45,6 +49,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public bool IsCompatibilityVersion
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return ((value & 1) == 1); }
         }
         /// <summary>
@@ -52,6 +57,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public bool IsValid
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return (value != 0); }
         }
 
@@ -63,10 +69,12 @@ namespace SE.Apollo.Package
             this.value = value;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public static implicit operator UInt32(PackageVersion version)
         {
             return version.value;
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public static implicit operator PackageVersion(UInt32 version)
         {
             return new PackageVersion(version);
@@ -89,14 +97,17 @@ namespace SE.Apollo.Package
         /// <summary>
         /// Compares this version number to a second one and returns the result
         /// </summary>
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public int CompareTo(PackageVersion other)
         {
             return value.CompareTo(other.value);
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             return value.GetHashCode();
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             if (value != 0)
@@ -109,6 +120,7 @@ namespace SE.Apollo.Package
         /// <summary>
         /// Creates a new version number instance from the provided version components
         /// </summary>
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public static PackageVersion Create(UInt32 major, UInt32 minor, UInt32 revision, bool compatibilityVersion)
         {
             return (UInt32)

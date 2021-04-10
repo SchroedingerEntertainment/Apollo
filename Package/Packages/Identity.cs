@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SE.Config;
 using SE.Json;
 
@@ -20,6 +21,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Name
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return name; }
         }
 
@@ -30,6 +32,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public Uri Homepage
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return homepage; }
         }
 
@@ -40,11 +43,13 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Email
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return email; }
         }
 
         public bool IsValid
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return !string.IsNullOrEmpty(name); }
         }
 
@@ -87,10 +92,12 @@ namespace SE.Apollo.Package
             #endregion
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             return name.GetHashCode();
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override bool Equals(object obj)
         {
             Identity settings = (obj as Identity);
@@ -101,6 +108,7 @@ namespace SE.Apollo.Package
             else return false;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             return name.ToString();

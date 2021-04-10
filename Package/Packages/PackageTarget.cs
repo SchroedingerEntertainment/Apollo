@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace SE.Apollo.Package
@@ -18,6 +19,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public PackageId Id
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return id; }
         }
 
@@ -27,6 +29,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public PackageVersion Version
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return version; }
         }
 
@@ -36,6 +39,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public bool IsDependency
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return isDependency; }
         }
 
@@ -69,11 +73,13 @@ namespace SE.Apollo.Package
         /// </summary>
         /// <param name="scoped">A flag to also append the package scope to the string</param>
         /// <returns>The formatted string</returns>
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public string FriendlyName(bool scope)
         {
             return string.Concat(id.FriendlyName(scope), "@", version.ToString());
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             return string.Concat(id.ToString(), "@", version.ToString());

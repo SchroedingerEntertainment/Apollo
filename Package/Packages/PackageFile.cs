@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using SE.Config;
 using SE.Json;
 
@@ -21,6 +22,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public Uri RemoteLocation
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return remoteLocation; }
         }
 
@@ -30,7 +32,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public FileSystemDescriptor Location
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return location; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set { location = value; }
         }
 
@@ -41,11 +45,13 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Checksum
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return checksum; }
         }
 
         public bool IsValid
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return remoteLocation != null; }
         }
 
@@ -79,10 +85,12 @@ namespace SE.Apollo.Package
             #endregion
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             return remoteLocation.GetHashCode();
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override bool Equals(object obj)
         {
             PackageContent settings = (obj as PackageContent);
@@ -93,6 +101,7 @@ namespace SE.Apollo.Package
             else return false;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             return remoteLocation.ToString();

@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using SE.Config;
 
@@ -26,6 +27,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public static HashSet<Repository> Repositories
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return repositories; }
         }
 
@@ -37,6 +39,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public static HashSet<string> AcceptedLicenses
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return acceptedLicenses; }
         }
 
@@ -47,6 +50,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public static Dictionary<string, string> PackageLocations
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return packageLocations; }
         }
 
@@ -112,6 +116,7 @@ namespace SE.Apollo.Package
         /// <param name="package">The package to which the target should be located</param>
         /// <param name="basePath">The resolved file system directory path</param>
         /// <returns>True if the package could be resolved to a specific path, false otherwise</returns>
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public static bool GetLocation(PackageMeta package, ref PathDescriptor basePath)
         {
             return GetLocation(new PackageTarget(package.Id, package.Version), ref basePath);

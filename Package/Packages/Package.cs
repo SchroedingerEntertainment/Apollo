@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using SE.Config;
 
 namespace SE.Apollo.Package
@@ -20,7 +21,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public PackageId Id
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return id; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set
             {
                 if (id.IsValid)
@@ -38,7 +41,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Description
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return description; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set { description = value; }
         }
 
@@ -49,7 +54,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public Uri ProjectHome
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return projectHome; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set { projectHome = value; }
         }
 
@@ -60,7 +67,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public string License
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return license; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set { license = value; }
         }
 
@@ -71,7 +80,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public PackageVersion Version
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return version; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set
             {
                 if (version.IsValid)
@@ -89,6 +100,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public Dictionary<PackageId, PackageVersion> Dependencies
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return dependencies; }
         }
 
@@ -100,6 +112,7 @@ namespace SE.Apollo.Package
         /// <remarks>Usually used for plugin packages that refer to the plugin host</remarks>
         public Dictionary<PackageId, PackageVersion> References
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return references; }
         }
 
@@ -110,6 +123,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public HashSet<string> Platform
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return platform; }
         }
 
@@ -120,6 +134,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public HashSet<PlatformTarget> Architecture
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return architecture; }
         }
 
@@ -130,6 +145,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public HashSet<string> Files
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return files; }
         }
 
@@ -140,7 +156,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public BugTracker BugTracker
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return bugTracker; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set { bugTracker = value; }
         }
 
@@ -151,6 +169,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public HashSet<string> Tags
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return tags; }
         }
 
@@ -162,6 +181,7 @@ namespace SE.Apollo.Package
         [NamedProperty("contributors", TypeConverter = typeof(ComplexConverter<Identity>))]
         public HashSet<Identity> Maintainer
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return maintainer; }
         }
 
@@ -172,7 +192,9 @@ namespace SE.Apollo.Package
         /// </summary>
         public PackageSource Source
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return source; }
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             set { source = value; }
         }
 
@@ -183,6 +205,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public PackageContent Content
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return content; }
         }
 
@@ -194,6 +217,7 @@ namespace SE.Apollo.Package
         /// <remarks>The execution depends on the host processing the package meta data</remarks>
         public Dictionary<string, string> Events
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return events; }
         }
 
@@ -205,6 +229,7 @@ namespace SE.Apollo.Package
         /// <remarks>The usage depends on the host processing the package meta data</remarks>
         public Dictionary<string, string> Parameter
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return parameter; }
         }
 
@@ -258,11 +283,13 @@ namespace SE.Apollo.Package
         /// </summary>
         /// <param name="scoped">A flag to also append the package scope to the string</param>
         /// <returns>The formatted string</returns>
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public string FriendlyName(bool scope)
         {
             return string.Concat(id.FriendlyName(scope), "@", version.ToString());
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             HashCombiner hash = new HashCombiner();
@@ -271,6 +298,7 @@ namespace SE.Apollo.Package
 
             return hash.Value;
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override bool Equals(object obj)
         {
             PackageMeta pkg = (obj as PackageMeta);
@@ -281,6 +309,7 @@ namespace SE.Apollo.Package
             else return false;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             return string.Concat(id.ToString(), "@", version.ToString());

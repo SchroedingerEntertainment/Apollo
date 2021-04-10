@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Security;
 using SE.Config;
 
@@ -27,6 +28,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public Uri Address
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return address; }
         }
 
@@ -42,11 +44,13 @@ namespace SE.Apollo.Package
         /// </summary>
         public Dictionary<string, string> Prefixes
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return prefixes; }
         }
 
         public bool IsValid
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return (address != null); }
         }
 
@@ -86,10 +90,12 @@ namespace SE.Apollo.Package
             return http;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             return address.GetHashCode();
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override bool Equals(object obj)
         {
             Repository settings = (obj as Repository);
@@ -100,6 +106,7 @@ namespace SE.Apollo.Package
             else return false;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             return address.ToString();

@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SE.Apollo.Package
 {
@@ -19,6 +20,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Scope
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get 
             {
                 if (string.IsNullOrWhiteSpace(scope))
@@ -35,6 +37,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Owner
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get 
             {
                 if (string.IsNullOrWhiteSpace(owner))
@@ -51,6 +54,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Namespace
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get 
             {
                 if (string.IsNullOrWhiteSpace(@namespace))
@@ -67,6 +71,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Name
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get 
             {
                 if (string.IsNullOrWhiteSpace(name))
@@ -82,6 +87,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public bool IsValid
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get
             {
                 if (string.IsNullOrWhiteSpace(owner) || string.IsNullOrWhiteSpace(@namespace) || string.IsNullOrWhiteSpace(name))
@@ -163,6 +169,7 @@ namespace SE.Apollo.Package
             );
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override bool Equals(object obj)
         {
             if (obj is PackageId)
@@ -172,6 +179,7 @@ namespace SE.Apollo.Package
             }
             else return false;
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             HashCombiner hash = new HashCombiner();

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SE.Config;
 using SE.Json;
 
@@ -20,6 +21,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public Uri BaseAddress
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return baseAddress; }
         }
 
@@ -30,6 +32,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Protocol
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return protocol; }
         }
 
@@ -40,11 +43,13 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Path
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return path; }
         }
 
         public bool IsValid
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return baseAddress != null; }
         }
 
@@ -87,10 +92,12 @@ namespace SE.Apollo.Package
             #endregion
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             return baseAddress.GetHashCode();
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override bool Equals(object obj)
         {
             PackageSource settings = (obj as PackageSource);
@@ -101,6 +108,7 @@ namespace SE.Apollo.Package
             else return false;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             return baseAddress.ToString();

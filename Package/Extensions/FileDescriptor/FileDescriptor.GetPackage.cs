@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using SE.Config;
 using SE.Json;
 
@@ -50,6 +51,7 @@ namespace SE.Apollo.Package
         /// </summary>
         /// <param name="result">The resulting package info if processing succeeded</param>
         /// <returns>True if the file has successfully been processed, false otherwise</returns>
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public static bool GetPackage(this FileDescriptor file, out PackageMeta result)
         {
             return GetPackage(file, out result);

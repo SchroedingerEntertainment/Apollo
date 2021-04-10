@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SE.Config;
 using SE.Json;
 
@@ -20,6 +21,7 @@ namespace SE.Apollo.Package
         /// </summary>
         public Uri Address
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return address; }
         }
 
@@ -30,11 +32,13 @@ namespace SE.Apollo.Package
         /// </summary>
         public string Email
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return email; }
         }
 
         public bool IsValid
         {
+            [MethodImpl(OptimizationExtensions.ForceInline)]
             get { return (address != null || !string.IsNullOrEmpty(email)); }
         }
 
@@ -68,10 +72,12 @@ namespace SE.Apollo.Package
             #endregion
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override int GetHashCode()
         {
             return address.GetHashCode();
         }
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override bool Equals(object obj)
         {
             BugTracker settings = (obj as BugTracker);
@@ -82,6 +88,7 @@ namespace SE.Apollo.Package
             else return false;
         }
 
+        [MethodImpl(OptimizationExtensions.ForceInline)]
         public override string ToString()
         {
             return address.ToString();
